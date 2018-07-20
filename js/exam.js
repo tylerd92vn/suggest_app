@@ -112,7 +112,6 @@
 						item.style.display = 'flex';
 					}
 				});
-
 				break;
 		}
 	}
