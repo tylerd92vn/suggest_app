@@ -1,0 +1,77 @@
+h1, h2, h3, h4, h5, h6, p, ul,li {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style-type: none;
+}
+.ttl {
+	text-align: center;
+	font-size: 40px;
+	padding: 20px 0;
+
+	@media (max-width: 900px) {
+		font-size: 30px;
+		padding: 15px 0;
+	}
+}
+.suggest {
+	&__list {
+		height: 0;
+		margin: 0 auto;
+		max-width: 300px;
+		opacity: 0;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		width: 100%;
+
+		&#{&}--show {
+			height: auto;
+			max-height: 400px;	
+			opacity: 1;
+		}
+	}
+
+	&__item {
+		align-items: center;
+		border-bottom: 1px solid rgba(0,0,0,.1);
+		cursor: pointer;
+		display: flex;
+		padding: 7px;
+		z-index: 9999;
+
+		&:hover {
+			background: rgba(0,0,0,.1);
+		}
+
+		&--active {
+			background: rgba(0,0,0,.1);
+		}
+
+		&__ttl {
+			font-size: 16px;
+			font-weight: normal;
+			line-height: 1;
+			margin-left: 10px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			width: calc(100% - 60px);
+			white-space: nowrap;
+		}
+
+		&__img {
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			flex: 0 0 auto;
+			height: 50px;
+			width: 50px;
+		}
+	}
+
+	&__form {
+		margin: 0 auto;
+		max-width: 300px;
+		width: 100%;
+	}
+}
