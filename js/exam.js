@@ -1,23 +1,32 @@
 (function() {
 
+	// Add events on body
 	var bodyEl = document.getElementsByTagName('body')[0];
 	bodyEl.addEventListener("click", handleClick);
 	bodyEl.addEventListener("keyup", handleKeyup);
 	bodyEl.addEventListener("keydown", handleKeydown);
 
+	// (string) store input value
 	var inputVal = '';
-	var selectedItems = [];
+	// (array) initialize data
 	var data = TABLE_DATA;
-	var maxItems = TABLE_DATA.length + 1;
+	// (array) store selected items id in data
+	var selectedItems = [];
+	// store maximum items, which used to detect whether to re-render
+	var maxItems = TABLE_DATA.length + 1; 
+	// store data to be visible (after filtering with keyword)
 	var availableData = data;
-	var currentActive = -1;
+	// store index of item in availableData array, then map the tem in availableData with data
+	var currentActive = -1;               
 
+	// DOM elements
 	var inputEl = document.getElementById("apps_input");
 	var listWrapperEl = document.getElementById("suggest__inner");
 	var listEl = document.getElementById("suggest__list");
 
 	render();
 
+	// render suggest__list DOM element
 	function render() {
 		data = TABLE_DATA.filter(x => selectedItems.indexOf(x.id) < 0);
 		if (data.length < maxItems) {
@@ -34,7 +43,7 @@
 
 				var itemImgEl = document.createElement("p");
 				itemImgEl.classList.add("suggest__item__img");
-				itemImgEl.style['background-image'] = 'url(../' + item.thumbnailUrl + ')';
+				itemImgEl.appendChild(imgEl);
 
 				var itemTtlEl = document.createElement("h4");
 				itemTtlEl.classList.add("suggest__item__ttl");
@@ -49,11 +58,17 @@
 		}
 	}
 
+	// Handle click on DOM
 	function handleClick(e) {
+		// Click (focus) into input
+		// Result: Display suggest layer, focus into input with cursor to the end of the displayed text
 		if (e.target.id === 'apps_input') {
 			showSuggest();
 			inputEl.setSelectionRange(inputVal.length, inputVal.length);
-		} else {
+		}
+		// Click outside input
+		// Result: Hide suggest layer, and if target is an item, update input value
+		else {
 			if (!!e.target.closest("li")) {
 				let itemId = e.target.closest("li").dataset.itemId;
 				chooseData(itemId);
@@ -62,6 +77,8 @@
 		}
 	}
 
+	// Handle Enter key
+	// Result: Hide suggest layer, update input value
 	function handleKeydown(e) {
 		var itemElArr = document.getElementsByClassName("suggest__item");
 		var itemActiveClass = 'suggest__item--active';
@@ -80,6 +97,7 @@
 		}
 	}
 
+	// Handle keys (except Enter)
 	function handleKeyup(e) {
 
 		var itemElArr = document.getElementsByClassName("suggest__item");
@@ -116,15 +134,18 @@
 		}
 	}
 
+	// Display suggest layer
 	function showSuggest() {
 		listEl.classList.add("suggest__list--show");
 		render();
 	}
 
+	// Hide suggest layer
 	function hideSuggest() {
 		listEl.classList.remove("suggest__list--show");
 	}
 
+	// Update input value, update selectedItems
 	function chooseData(itemId) {
 		var result = TABLE_DATA.find(x => x.id === itemId);
 		if (selectedItems.indexOf(result.id) < 0) {

@@ -1,32 +1,11 @@
-# Prerequisites
-
-1.  Pure js implementation without any libraries or frameworks is strongly recommended.
-2.  It should be bug‐free on latest Chrome(PC), which also means you can use latest js spec if supported.
-3.  CSS preprocessor is strongly recommended.
-4.  Must use git for your commit.
-5.  Clear annotations are strongly recommended.
-6.  Pack your final work as .zip file, which should contain: 
-- All source code
-- A demo html page, which should work without extra setting
-- .git meta file, for us to see your commit log
-- A clear README
-
-Notes: Please devote enough time on this to impress us with your skill.
 
 # Overview
-There are many apps in Apple Sotre, please implement a suggest plugin for easier input of app names. Something like following but do make it as cool as you can.
+There are many apps in Apple Sotre, this implementation helps to suggest for user when they input app names.
 
 ![Demo](./docs/images/SeniorWebAppDemo.png)
 
-# Requirements
-1.  Be able to attach to multiple input by js.
-2.  Suggest layer should be displayed when input is focused, and hidden when areas outside are clicked.
-3.  Show all the matching items(if no input, show all the apps), with logo & name, at max height 400px.
-4.  Clicking item(or pressing ENTER key when item is focused) should update the input field with corresponding app name.
-5.  Should support both keyboard & mouse selecting for PC browsers, and there must be no conflict when using both. 
-
-# Bonus point
-1.  Update suggest layer with minimum dom operations rather than simply replacing the whole dom.
-2.  Handle click event by event delegation, .etc
-3.  Make it extensible for other data source and template supports mobile browsers, such as iOS Safari. 
-4.  Should save input history when suggested item is selected. Manage input history in local browser(localStorage, indexDB, .etc) display history items with higher priority should enable user to clear special search history item.
+# Description
+1.  When user click into the input field, suggest layer will be displayed as a list with all apps
+2.  From the list, user can click on the item to select it, and then the app name will be updated into the input field
+3.  Other than that, user can also use keyboard up and down arrows, in order to select each item individually. User then can select the item that they want, by both pressing Enter key and mouse click.
+4.  User can also filter the apps with some keywords, by input some characters in the input field. The list will be updated to show only matched results. User then can use either case 2 or case 3 to select the item they want.
